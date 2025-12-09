@@ -13,7 +13,7 @@ export class Usuarios implements OnInit {
   clientes: Cliente[] = [];
 
   // Modelo correcto
-  cliente: Cliente = { nombre: '', correo: '', telefono: '' };
+  cliente: Cliente = { nombre: '', artista: '', genero: '' };
 
   editMode = false;
   editId: string | null = null;
@@ -43,7 +43,7 @@ export class Usuarios implements OnInit {
   }
 
   guardar() {
-    if (!this.cliente.nombre || !this.cliente.correo) {
+    if (!this.cliente.nombre || !this.cliente.artista) {
       alert('Nombre y correo son obligatorios');
       return;
     }
@@ -86,8 +86,8 @@ export class Usuarios implements OnInit {
 
     this.cliente = {
       nombre: c.nombre,
-      correo: c.correo,
-      telefono: c.telefono
+      artista: c.artista,
+      genero: c.genero
     };
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -119,7 +119,7 @@ export class Usuarios implements OnInit {
   }
 
   private resetForm() {
-    this.cliente = { nombre: '', correo: '', telefono: '' };
+    this.cliente = { nombre: '', artista: '', genero: '' };
   }
 
 }
