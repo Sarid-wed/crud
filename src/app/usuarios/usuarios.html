@@ -1,0 +1,55 @@
+<div class="container">
+  <h2>Gestión de Clientes</h2>
+
+  <form (ngSubmit)="guardar()" #f="ngForm" novalidate>
+    <div class="form-group">
+      <label>Nombre</label>
+      <input name="nombre" [(ngModel)]="cliente.nombre" required class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Correo</label>
+      <input name="correo" type="email" [(ngModel)]="cliente.correo" required class="form-control" />
+    </div>
+
+    <div class="form-group">
+      <label>Telefono</label>
+      <input name="Telefono"  [(ngModel)]="cliente.telefono" required class="form-control" />
+    </div>
+    
+
+    <div class="form-actions">
+      <button type="submit" class="btn">{{ editMode ? 'Actualizar' : 'Guardar' }}</button>
+      <button type="button" class="btn btn-secondary" (click)="cancelarEdicion()" *ngIf="editMode">Cancelar</button>
+    </div>
+  </form>
+
+  <hr/>
+
+  <div *ngIf="cargando">Cargando...</div>
+  <div *ngIf="errorMessage">{{ errorMessage }}</div>
+
+  <table *ngIf="clientes.length > 0" class="table">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Telefono</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of clientes">
+        <td>{{ c.nombre }}</td>
+        <td>{{ c.correo }}</td>
+        <td> {{ c.telefono }}</td>
+        <td>
+          <button (click)="editar(c)">Editar</button>
+          <button (click)="eliminar(c)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="clientes.length === 0 && !cargando">No hay registros aún.</div>
+</div>
